@@ -1,0 +1,12 @@
+term=foot-client
+width=25%
+lines=11
+
+prompt=
+show=drun run
+insensitive=true
+allow_images=true
+hide_scroll=true
+
+always_parse_args=true
+show_all=true
