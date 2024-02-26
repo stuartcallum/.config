@@ -27,6 +27,7 @@ set $menu exec wofi --show run drun -I
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg ~/Pictures/camille-villanueva-zsAPsRjzXRI-unsplash.jpg fill
 output * bg ~/Pictures/5VsyPsC.png fill
+output eDP-1 bg ~/Pictures/ucwokcgii3241.png fill
 #output * bg ~/Pictures/IMG_6622.jpeg fill
 #
 # Example configuration:
@@ -97,7 +98,7 @@ for_window [window_role="dialog"] floating enable
 #
     # Start a terminal
     bindsym $mod+Return exec $term
-    bindsym $mod+shift+Return exec gnome-terminal 
+    bindsym $mod+shift+Return exec xterm -fa 'VictorMono Nerd Font:size=11'
 
     # Kill focused window
     bindsym $mod+q kill
@@ -306,6 +307,7 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 exec --no-startup-id pipewire &
 exec --no-startup-id pipewire-pulse &
 exec foot --server
+exec xrdb ~/.Xresources
 exec slack && sway '[class="slack"]' move container to workspace 0
 exec zoom && sway '[class="zoom"]' move container to workspace 9
 exec thunderbird && sway '[app_id="thunderbird"]' move container to workspace 8
