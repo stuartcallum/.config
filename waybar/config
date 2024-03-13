@@ -87,7 +87,6 @@
       "format": " {}",
       "interval": 3600,
       "exec": "python3 $HOME/.config/waybar/icon.py",
-      "tooltip": "false"
     }
   }
 }

@@ -28,6 +28,7 @@ set $menu exec wofi --show run drun -I
 # output * bg ~/Pictures/camille-villanueva-zsAPsRjzXRI-unsplash.jpg fill
 output * bg ~/Pictures/5VsyPsC.png fill
 output eDP-1 bg ~/Pictures/ucwokcgii3241.png fill
+output DP-1 bg ~/Pictures/ucwokcgii3241.png fill
 #output * bg ~/Pictures/IMG_6622.jpeg fill
 #
 # Example configuration:
@@ -50,6 +51,7 @@ output $monLeft resolution 1920x1080 transform "270" pos 0 0
 output $monRight resolution 1920x1080 transform "90" pos 3640  0 
 output $4k resolution 2560x1440@74.997Hz 
 # output $4k resolution 3840x2160 
+output DP-1 scale 2
 
  output $monLeft disable
  output $monRight disable
@@ -62,6 +64,7 @@ output $4k resolution 2560x1440@74.997Hz
 for_window [app_id="pavucontrol"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_role="dialog"] floating enable
+for_window [app_id="zoom"] floating enable
 
 ### Idle configuration
 #
@@ -274,14 +277,12 @@ bindsym $mod+r mode "resize"
 
  ### cursor
 
-seat seat0 xcursor_theme Adwaita 12
+# seat seat0 xcursor_theme Adwaita 12
 
   # Borders
   # default_border pixel 1
   # for_window [class=".*"] border pixel 3
-    for_window [class="firefox"] border pixel 1
-    for_window [class="google-chrome"] border pixel 0
-    for_window [class="Google-Chrome"] border pixel 0
+  for_window [app_id="firefox"] border pixel none
 
 ### Colors
   # Class                   Border      BG          Text        Indicator   Child border
@@ -307,8 +308,8 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 exec --no-startup-id pipewire &
 exec --no-startup-id pipewire-pulse &
 exec foot --server
-exec xrdb ~/.Xresources
-exec slack && sway '[class="slack"]' move container to workspace 0
-exec zoom && sway '[class="zoom"]' move container to workspace 9
-exec thunderbird && sway '[app_id="thunderbird"]' move container to workspace 8
-exec appgate && sway '[class="appgate"]' move container to workspace 7
+exec xrdb /home/callum/.Xresources
+# exec slack && sway '[class="slack"]' move container to workspace 0
+# exec zoom && sway '[class="zoom"]' move container to workspace 9
+# exec thunderbird && sway '[app_id="thunderbird"]' move container to workspace 8
+# exec appgate && sway '[class="appgate"]' move container to workspace 7
