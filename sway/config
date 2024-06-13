@@ -20,7 +20,7 @@ set $term footclient
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu exec wofi --show run drun -I
+set $menu exec fuzzel
 
 ### Output configuration
 #
@@ -40,7 +40,7 @@ output DP-1 bg ~/Pictures/ucwokcgii3241.png fill
  # set $4k DP-1
  set $monLeft DP-3
  set $monRight DP-4
- set $monMiddle DP-5
+ set $monMiddle 'LG Electronics LG HDR WFHD 0x0000069E'
 # set $monLeft DP-6
 # set $monRight DP-7
 # set $monMiddle DP-8
@@ -55,7 +55,6 @@ output DP-1 scale 2
 
  output $monLeft disable
  output $monRight disable
- output DP-6 disable
  output DP-7 disable
 # output $monMiddle disable
 # output $laptop disable

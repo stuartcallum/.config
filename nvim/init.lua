@@ -24,7 +24,9 @@ require("lazy").setup({
 	{ "nvim-tree/nvim-web-devicons" },
 	--	{ "romgrk/barbar.nvim", dependencies = {"lewis6991/gitsigns.nvim", "nvim-tree/nvim-web-devicons"}, init = function() vim.g.barbar_auto_setup = true end},
 	{ "williamboman/mason.nvim" },
-	{ "mfussenegger/nvim-jdtls" }
+--	{ "github/copilot.vim"},
+	{ "mfussenegger/nvim-jdtls" },
+	{ "f-person/git-blame.nvim" }
 	})
 
 vim.cmd([[colorscheme gruvbox]])
