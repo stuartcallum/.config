@@ -87,6 +87,10 @@
       "format": " {}",
       "interval": 3600,
       "exec": "python3 $HOME/.config/waybar/icon.py",
+    },
+    "custom/suspend": {
+    	"exec": "systemctl suspend",
+	"format-icon": "⏻"	
     }
   }
 }

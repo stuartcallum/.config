@@ -26,9 +26,9 @@ set $menu exec fuzzel
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg ~/Pictures/camille-villanueva-zsAPsRjzXRI-unsplash.jpg fill
-output * bg ~/Pictures/5VsyPsC.png fill
-output eDP-1 bg ~/Pictures/ucwokcgii3241.png fill
-output DP-1 bg ~/Pictures/ucwokcgii3241.png fill
+output * bg ~/Pictures/2zo8wlittc7d1.png fill
+# output eDP-1 bg ~/Pictures/ucwokcgii3241.png fill
+# output DP-1 bg ~/Pictures/ucwokcgii3241.png fill
 #output * bg ~/Pictures/IMG_6622.jpeg fill
 #
 # Example configuration:
@@ -284,21 +284,14 @@ bindsym $mod+r mode "resize"
   # for_window [class=".*"] border pixel 3
   for_window [app_id="firefox"] border pixel none
 
-### Colors
-  # Class                   Border      BG          Text        Indicator   Child border
-  client.focused            #ebdbb2     #282828	    #ebdbb2     #fffffff2   #ebdbb2
-  client.unfocused          #282828	    #282828	    #ebdbb2     #cc241d     #282828
-  client.focused_inactive   #282828	    #282828     #ebdbb2     #ffffff88   #282828
-  client.background         #282828
-
 ##============ rose pine =================##
 
-# ### Colors
-#   # Class                   Border      BG          Text        Indicator   Child border
-#   client.focused            #eb6f92     #282828	    #ebdbb2     #fffffff2   #eb6f92
-#   client.unfocused          #282828	    #282828	    #ebdbb2     #cc241d     #191724
-#   client.focused_inactive   #282828	    #282828     #ebdbb2     #ffffff88   #191724 
-#   client.background         #282828
+ ### Colors
+   # Class                   Border      BG          Text        Indicator   Child border
+   client.focused            #eb6f92     #191724	    #e0def4     #fffffff2   #eb6f92
+   client.unfocused          #191724	    #191724	#e0def4     #cc241d     #191724
+   client.focused_inactive   #191724	    #191724	#e0def4     #ffffff88   #191724 
+   client.background         #191724
 
 include /etc/sway/config.d/*
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway

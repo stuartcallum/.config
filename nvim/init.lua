@@ -19,7 +19,8 @@ vim.g.netrw_bufsettings = 'noma nomod nonu nobl nowrap ro'
 
 require("lazy").setup({
 	{ "nvim-treesitter/nvim-treesitter", cmd = "TSUpdate" },
-	{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true},
+--	{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true},
+	{ "rose-pine/neovim", name = "rose-pine" },
 	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" }},
 	{ "nvim-tree/nvim-web-devicons" },
 	--	{ "romgrk/barbar.nvim", dependencies = {"lewis6991/gitsigns.nvim", "nvim-tree/nvim-web-devicons"}, init = function() vim.g.barbar_auto_setup = true end},
@@ -29,4 +30,5 @@ require("lazy").setup({
 	{ "f-person/git-blame.nvim" }
 	})
 
-vim.cmd([[colorscheme gruvbox]])
+--vim.cmd([[colorscheme gruvbox]])
+vim.cmd([[colorscheme rose-pine]])
