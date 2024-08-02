@@ -38,8 +38,8 @@ output * bg ~/Pictures/2zo8wlittc7d1.png fill
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
  # set $4k DP-1
- set $monLeft DP-3
- set $monRight DP-4
+ set $monLeft DP-4
+ set $monRight DP-3
  set $monMiddle 'LG Electronics LG HDR WFHD 0x0000069E'
 # set $monLeft DP-6
 # set $monRight DP-7
@@ -47,14 +47,14 @@ output * bg ~/Pictures/2zo8wlittc7d1.png fill
 set $laptop eDP-1
 
 output $monMiddle resolution 2560x1080@74.991Hz pos 1080 0
-output $monLeft resolution 1920x1080 transform "270" pos 0 0
-output $monRight resolution 1920x1080 transform "90" pos 3640  0 
+output $monLeft resolution 1920x1080 pos 0 0
+output $monRight resolution 1920x1080 pos 1920 0 
 output $4k resolution 2560x1440@74.997Hz 
 # output $4k resolution 3840x2160 
 output DP-1 scale 2
 
- output $monLeft disable
- output $monRight disable
+# output $monLeft disable
+# output $monRight disable
  output DP-7 disable
 # output $monMiddle disable
 # output $laptop disable
@@ -161,9 +161,9 @@ for_window [app_id="zoom"] floating enable
 #
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
-workspace 1 output $monLeft
-workspace 2 output $monMiddle
-workspace 3 output $monRight
+# workspace 1 output $monLeft
+# workspace 2 output $monMiddle
+# workspace 3 output $monRight
 
    bindsym $mod+Prior exec pactl set-sink-volume @DEFAULT_SINK@ +1000
    bindsym $mod+Next exec pactl set-sink-volume @DEFAULT_SINK@ -1000
@@ -277,7 +277,7 @@ bindsym $mod+r mode "resize"
 
  ### cursor
 
-# seat seat0 xcursor_theme Adwaita 12
+seat seat0 xcursor_theme BreezeX-RosePine-Linux
 
   # Borders
   # default_border pixel 1
