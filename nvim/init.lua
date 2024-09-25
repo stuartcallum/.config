@@ -20,15 +20,16 @@ vim.g.netrw_bufsettings = 'noma nomod nonu nobl nowrap ro'
 require("lazy").setup({
 	{ "nvim-treesitter/nvim-treesitter", cmd = "TSUpdate" },
 --	{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true},
-	{ "rose-pine/neovim", name = "rose-pine" },
+--	{ "rose-pine/neovim", name = "rose-pine" },
 	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" }},
 	{ "nvim-tree/nvim-web-devicons" },
 	--	{ "romgrk/barbar.nvim", dependencies = {"lewis6991/gitsigns.nvim", "nvim-tree/nvim-web-devicons"}, init = function() vim.g.barbar_auto_setup = true end},
 	{ "williamboman/mason.nvim" },
 --	{ "github/copilot.vim"},
 	{ "mfussenegger/nvim-jdtls" },
-	{ "f-person/git-blame.nvim" }
+--	{ "f-person/git-blame.nvim" },
+	{ "cameron-wags/rainbow_csv.nvim", config = true, ft = { 'csv', 'tsv', 'csv_semicolon', 'csv_whitespace', 'csv_pipe', 'rfc_csv', 'rfc_semicolon' }, cmd = { 'RainbowDelim', 'RainbowDelimSimple', 'RainbowDelimQuoted', 'RainbowMultiDelim' } }
 	})
 
 --vim.cmd([[colorscheme gruvbox]])
-vim.cmd([[colorscheme rose-pine]])
+--vim.cmd([[colorscheme rose-pine]])

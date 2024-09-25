@@ -16,4 +16,5 @@ return {
 	initial_cols = 128,
 	font_size = 16,
 	window_close_confirmation = 'NeverPrompt',
+	tab_bar_at_bottom = true,
 }
