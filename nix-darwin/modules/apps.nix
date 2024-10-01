@@ -9,7 +9,13 @@
 		zsh-autosuggestions
 		zsh-syntax-highlighting
 		_1password
-#		zulu8
+		docker
+		colima
+		zsh-autocomplete
+		zsh-autosuggestions
+		oh-my-zsh
+		pssh
+		p7zip
 	];
 
 	homebrew = {
@@ -23,6 +29,8 @@
 			"obsidian"
 			"1password"
 			"OpenWebStart"
+			"visual-studio-code"
+			"zed"
 		];
 	};
 }
