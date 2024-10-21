@@ -16,6 +16,10 @@
 		oh-my-zsh
 		pssh
 		p7zip
+		bun
+		ffmpeg
+		btop
+		htop
 	];
 
 	homebrew = {
@@ -30,7 +34,8 @@
 			"1password"
 			"OpenWebStart"
 			"visual-studio-code"
-			"zed"
+			"pgadmin4"
+			"dbgate"
 		];
 	};
 }
