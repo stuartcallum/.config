@@ -21,9 +21,13 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+    aerospace = {
+    	url = "github:nikitabobko/homebrew-tap";
+	flake = false;
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, aerospace, ... }:
   let
     system = "aarch64-darwin";
     pkgs = import nixpkgs {
@@ -80,18 +84,15 @@
 	      "homebrew/homebrew-core" = homebrew-core;
 	      "homebrew/homebrew-cask" = homebrew-cask;
 	      "homebrew/homebrew-bundle" = homebrew-bundle;
-	    };
+	      "nikitabobko/homebrew-tap" = aerospace;
+		};
 	    mutableTaps = false;
-	    autoMigrate = true;
 #	    onActivation = {
 #	    	autoUpdate = true;
 #		cleanup = "uninstall";
 #		upgrade = true;
 #	    };
 	};
-	}
-	{
-	  services.nix-daemon.enable = true;
 	}
 #	home-manager.darwinModules.home-manager {
 #		home-manager.useGlobalPkgs = true;

@@ -8,7 +8,7 @@
 		starship
 		zsh-autosuggestions
 		zsh-syntax-highlighting
-		_1password
+		_1password-cli
 		docker
 		colima
 		zsh-autocomplete
@@ -20,6 +20,12 @@
 		ffmpeg
 		btop
 		htop
+		kubectl
+		rancher
+		tree
+		openjdk
+		openvpn
+		rancher
 	];
 
 	homebrew = {
@@ -29,13 +35,21 @@
 			"macfuse"
 			"google-chrome"
 			"spotify"
-			"openvpn-connect"
 			"obsidian"
 			"1password"
-			"OpenWebStart"
 			"visual-studio-code"
 			"pgadmin4"
 			"dbgate"
+			"zed"
+			"vlc"
+			"openvpn-connect"
+			"openwebstart"
+#			"nikitabobko/tap/areospace"
 		];
+		onActivation = {
+			autoUpdate = true;
+			cleanup = "uninstall";
+			upgrade = true;
+		};
 	};
 }
