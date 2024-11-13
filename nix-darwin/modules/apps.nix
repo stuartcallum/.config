@@ -6,14 +6,9 @@
 		watch
 		ext4fuse
 		starship
-		zsh-autosuggestions
-		zsh-syntax-highlighting
 		_1password-cli
 		docker
 		colima
-		zsh-autocomplete
-		zsh-autosuggestions
-		oh-my-zsh
 		pssh
 		p7zip
 		bun
@@ -23,7 +18,6 @@
 		kubectl
 		rancher
 		tree
-		openjdk
 		openvpn
 		rancher
 	];
@@ -44,7 +38,7 @@
 			"vlc"
 			"openvpn-connect"
 			"openwebstart"
-#			"nikitabobko/tap/areospace"
+			"nikitabobko/tap/aerospace"
 		];
 		onActivation = {
 			autoUpdate = true;
