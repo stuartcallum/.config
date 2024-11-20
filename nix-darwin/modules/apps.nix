@@ -5,8 +5,8 @@
 		google-cloud-sdk
 		watch
 		ext4fuse
-		starship
 		_1password-cli
+		oh-my-zsh
 		docker
 		colima
 		pssh
@@ -20,6 +20,8 @@
 		tree
 		openvpn
 		rancher
+		wget
+		victor-mono
 	];
 
 	homebrew = {
@@ -39,6 +41,8 @@
 			"openvpn-connect"
 			"openwebstart"
 			"nikitabobko/tap/aerospace"
+			"lens"
+			"notion"
 		];
 		onActivation = {
 			autoUpdate = true;

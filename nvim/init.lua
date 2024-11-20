@@ -18,6 +18,7 @@ vim.g.netrw_bufsettings = 'noma nomod nonu nobl nowrap ro'
 
 require("lazy").setup({
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+	{ "everblush/nvim", name = "everblush", priority = 1000 },
 	{ "nvim-treesitter/nvim-treesitter", cmd = "TSUpdate" },
 --	{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true},
 --	{ "rose-pine/neovim", name = "rose-pine" },
@@ -34,7 +35,7 @@ require("lazy").setup({
 	}
 	)
 
-	vim.cmd.colorscheme "catppuccin"
+--	vim.cmd.colorscheme "everblush"
 
 	require ("netrw").setup({})
 --vim.cmd([[colorscheme gruvbox]])
