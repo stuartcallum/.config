@@ -15,6 +15,8 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "number"
 vim.g.netrw_bufsettings = 'noma nomod nonu nobl nowrap ro'
+vim.opt.autochdir = true
+vim.opt.clipboard='unnamed'
 
 require("lazy").setup({
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
@@ -32,7 +34,8 @@ require("lazy").setup({
 	{ "mfussenegger/nvim-jdtls" },
 --	{ "f-person/git-blame.nvim" },
 	{ "cameron-wags/rainbow_csv.nvim", config = true, ft = { 'csv', 'tsv', 'csv_semicolon', 'csv_whitespace', 'csv_pipe', 'rfc_csv', 'rfc_semicolon' }, cmd = { 'RainbowDelim', 'RainbowDelimSimple', 'RainbowDelimQuoted', 'RainbowMultiDelim' } }
-	}
+	},
+	{ "cuducos/yaml.nvim" }
 	)
 
 --	vim.cmd.colorscheme "everblush"

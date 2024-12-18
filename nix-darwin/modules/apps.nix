@@ -22,6 +22,7 @@
 		rancher
 		wget
 		victor-mono
+		sketchybar
 	];
 
 	homebrew = {
@@ -36,12 +37,10 @@
 			"visual-studio-code"
 			"pgadmin4"
 			"dbgate"
-			"zed"
 			"vlc"
 			"openvpn-connect"
 			"openwebstart"
 			"nikitabobko/tap/aerospace"
-			"lens"
 			"notion"
 		];
 		onActivation = {
