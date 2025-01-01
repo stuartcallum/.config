@@ -42,6 +42,7 @@
 			"openwebstart"
 			"nikitabobko/tap/aerospace"
 			"notion"
+			"ghostty"
 		];
 		onActivation = {
 			autoUpdate = true;
