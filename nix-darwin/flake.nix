@@ -100,6 +100,7 @@
 #		home-manager.users.callum = import ./home.nix;
 #	}
 	./modules/apps.nix
+
       ];
     };
 

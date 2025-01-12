@@ -8,8 +8,8 @@
 		_1password-cli
 		oh-my-zsh
 		docker
-		colima
 		pssh
+		colima
 		p7zip
 		bun
 		ffmpeg
@@ -42,7 +42,7 @@
 			"openwebstart"
 			"nikitabobko/tap/aerospace"
 			"notion"
-			"ghostty"
+			"ghostty@tip"
 		];
 		onActivation = {
 			autoUpdate = true;

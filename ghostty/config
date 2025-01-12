@@ -1,0 +1,4 @@
+theme = "Apple System Colors"
+macos-titlebar-style = tabs
+cursor-style-blink = false
+font-size = 14
