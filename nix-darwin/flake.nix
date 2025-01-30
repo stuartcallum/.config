@@ -27,7 +27,7 @@
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, aerospace, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, aerospace, ... }:
   let
     system = "aarch64-darwin";
     pkgs = import nixpkgs {
@@ -74,7 +74,6 @@
       system = system;
       modules = [
 	configuration
-	home-manager.darwinModules.home-manager
 	nix-homebrew.darwinModules.nix-homebrew
         {
 	    nix-homebrew = {
@@ -94,11 +93,6 @@
 #	    };
 	};
 	}
-#	home-manager.darwinModules.home-manager {
-#		home-manager.useGlobalPkgs = true;
-#		home-manager.useUserPackages = true;
-#		home-manager.users.callum = import ./home.nix;
-#	}
 	./modules/apps.nix
 
       ];

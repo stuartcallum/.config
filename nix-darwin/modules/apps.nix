@@ -22,7 +22,7 @@
 		rancher
 		wget
 		victor-mono
-		sketchybar
+		k9s
 	];
 
 	homebrew = {
@@ -43,6 +43,7 @@
 			"nikitabobko/tap/aerospace"
 			"notion"
 			"ghostty@tip"
+			"iina"
 		];
 		onActivation = {
 			autoUpdate = true;

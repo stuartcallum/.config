@@ -212,9 +212,12 @@ run = [
   # this was also observed in:
   # - https://github.com/ghostty-org/ghostty/issues/1840
   # - https://github.com/ghostty-org/ghostty/issues/2006
-  "layout floating"
+  "layout floating",
 ]
 
 [[on-window-detected]]
-if.app-id = "com.apple.finder"
-run = [ "layout floating" ]
+if.app-id="com.mitchellh.ghostty"
+run= [
+  "layout tiling",
+]
+
