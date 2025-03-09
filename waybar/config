@@ -1,57 +1,44 @@
 {
 	"layer": "top",
-	"modules-left": ["hyprland/workspaces", "mpd", "sway/mode"],
-	"modules-center": [],
-	"modules-right": ["network", "pipewire", "temperature", "cpu", "memory", "clock"],
-	"mpd": {
-		"tooltip": false,
-		"format": "{stateIcon} {artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
-		"format-disconnected": "ﳌ",
-		"format-stopped": "",
-        "state-icons": {
-            "playing": "",
-            "paused": ""
-        }
-	},
-	"pulseaudio": {
-		// "scroll-step": 1, // %, can be a float
-		"format": "{volume}% {icon} {format_source}",
-		"format-bluetooth": "{volume}% {icon} {format_source}",
-		"format-bluetooth-muted": " {icon} {format_source}",
-		"format-muted": " {format_source}",
-		"format-source": "{volume}% ",
-		"format-source-muted": "",
-		"format-icons": {
-		    "headphone": "",
-		    "hands-free": "",
-		    "headset": "",
-		    "phone": "",
-		    "portable": "",
-		    "car": "",
-		    "default": ["", "", ""]
-		},
-		"on-click": "pavucontrol"
-		},
-	},
+	"modules-left": ["hyprland/workspaces"],
+	"modules-center": ["hyprland/window"],
+	"modules-right": ["network", "temperature", "cpu", "memory", "wireplumber", "clock"],
+
 	"network": {
 		"tooltip": false,
-		"format-wifi": " {essid} {ipaddr}",
-		"format-ethernet": " {ipaddr}"
+		"format-wifi": "  {signalStrength}%",
+		"format-ethernet": "  {ipaddr}"
 	},
 	"cpu": {
-		"tooltip": false,
-		"format": " {}%"
+		"interval": 10,
+		"format": " {load}%",
+		"max-length": 10
 	},
+
 	"memory": {
 		"tooltip": false,
-		"format": "{}%"
+		"format": "  {used} GiB"
 	},
+
 	"temperature": {
-		// "thermal-zone": 2,
 		"hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
 		"critical-threshold": 80,
-		// "format-critical": "{temperatureC}°C {icon}",
 		"format": "{temperatureC}°C {icon}",
-		"format-icons": ["", "", ""]
-	    },
+	},
+
+	"hyprland/workspaces": {
+		"format-icons": "persistent",
+	},
+
+	"hyprland/window": {
+		"format": "{title}",
+	},
+
+    "wireplumber": {
+        "format": "🔈{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "scroll-step": 2,
+        "on-click": "pavucontrol",
+        "tooltip": false
+    },
 }
