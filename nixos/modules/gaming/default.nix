@@ -8,6 +8,8 @@
   # including inside NixOS modules (programs.steam, programs.gamemode, ...).
   # To put a gaming package on unstable, add its name to this list; the rest
   # of the gaming modules just use plain `pkgs.<name>`.
+  # (`final.unstable`, not `prev.` — overlay merge order across modules is
+  # unspecified, and only the fixed point is guaranteed to have `unstable`.)
   nixpkgs.overlays = [
     (final: prev: lib.genAttrs [
       "steam"
@@ -21,7 +23,7 @@
       "xemu"
       "rpcs3"
       "dolphin-emu"
-    ] (name: prev.unstable.${name}))
+    ] (name: final.unstable.${name}))
   ];
 
   programs.steam = {
