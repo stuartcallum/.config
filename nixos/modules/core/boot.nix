@@ -8,10 +8,9 @@
       # systemd-boot automatically detects the Windows Boot Manager if it
       # lives on the same EFI System Partition — no os-prober needed.
       #
-      # Windows usually creates a small (~100 MB) ESP. Keep the generation
-      # count low so kernels/initrds don't fill it. If you created a bigger
-      # dedicated ESP (1 GB), feel free to raise this.
-      configurationLimit = 5;
+      # The shared ESP is 1 GiB (rebuilt during the Windows boot repair),
+      # so there's room for a healthy number of generations.
+      configurationLimit = 15;
       editor = false; # don't allow editing kernel params at boot (security)
     };
     efi.canTouchEfiVariables = true;
