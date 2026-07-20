@@ -2,6 +2,8 @@
 { pkgs, ... }:
 
 {
+  imports = [ ./retro.nix ];
+
   # Swap the stable steam packages for unstable ones. Overlaying (rather than
   # setting programs.steam.package directly) keeps the module's FHS-env and
   # compat-path wiring intact.
