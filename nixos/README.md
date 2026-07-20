@@ -140,7 +140,9 @@ the clocks disagree between OSes, that's already handled
 | Switch GNOME ↔ Hyprland | edit `my.desktop.session` in `hosts/desktop/default.nix`, then `nrs` |
 | Update pinned inputs | `nix flake update && nrs`, commit `flake.lock` |
 | Start/stop the VPN | `sudo systemctl start openvpn-house` / `stop` |
-| Roll back | pick an older generation in the boot menu |
+| Roll back the system | pick an older generation in the boot menu |
+| Snapshot / and /home now | `sudo nix-snapshot` |
+| Recover files | copy them out of `/.snapshots/<name>/...` |
 
 The config lives at `~/.config/nixos`, owned by you — edit and `git push`
 without sudo. `/etc/nixos` is a symlink to it.
