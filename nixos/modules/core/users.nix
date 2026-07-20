@@ -20,19 +20,8 @@
 
   programs.zsh.enable = true;
 
-  # Let callum rebuild the system without typing a sudo password.
-  # Scoped to nixos-rebuild only — everything else still prompts.
-  security.sudo.extraRules = [
-    {
-      users = [ "callum" ];
-      commands = [
-        {
-          command = "/run/current-system/sw/bin/nixos-rebuild";
-          options = [ "NOPASSWD" ];
-        }
-      ];
-    }
-  ];
+  # Passwordless sudo for the wheel group (single-user desktop)
+  security.sudo.wheelNeedsPassword = false;
 
   # Convenience: `nrs` rebuilds from the config repo in ~/.config
   environment.shellAliases = {

@@ -155,8 +155,7 @@ machine themselves.
 
 - **Passwordless login** = GDM autologin. Your account still has a password
   (for sudo, ssh, and the lock screen) — set it on first boot.
-- **Sudo**: `nixos-rebuild` is passwordless for callum; everything else
-  prompts normally.
+- **Sudo**: passwordless for the wheel group.
 - **Hyprland**'s window manager config comes from the repo's own `hypr/`
   directory, which lands at `~/.config/hypr/` with the clone — nothing extra
   to set up.
