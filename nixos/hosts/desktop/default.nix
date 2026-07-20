@@ -10,6 +10,7 @@
     ../../modules/gaming
     ../../modules/dev
     ../../modules/system/auto-update.nix
+    ../../modules/system/config-repo.nix
     # Uncomment if this machine has an NVIDIA GPU:
     # ../../modules/hardware/nvidia.nix
   ];
