@@ -3,7 +3,13 @@
 Flake-based NixOS configuration for the desktop PC. Gaming + dev work,
 GNOME/Hyprland, dual boot with Windows.
 
-## Layout
+Lives in the `nixos/` subdirectory of
+[stuartcallum/.config](https://github.com/stuartcallum/.config), which is
+cloned as `~/.config` on the machine — so the same repo carries the system
+config and the dotfiles (`hypr/`, `nvim/`, `ghostty/`, `zsh/`, ...) that go
+with it.
+
+## Layout (of this subdirectory)
 
 ```
 flake.nix                    # inputs: nixos-25.05 (stable) + unstable overlay
@@ -18,6 +24,10 @@ modules/
   hardware/nvidia.nix        # opt-in, import from the host if needed
 secrets/                     # gitignored — OpenVPN profile lives here
 ```
+
+> **The repo is public.** `secrets/` (the OpenVPN profile with its inline
+> private key) is gitignored and must be moved between machines by hand —
+> a fresh clone will NOT contain it.
 
 Most packages come from **nixos-25.05**. Neovim, Steam, Proton-GE, and
 Ghostty come from **nixos-unstable** via the `pkgs.unstable` overlay.
@@ -70,11 +80,15 @@ have <16 GB RAM.
 ```sh
 nixos-generate-config --root /mnt
 
-git clone <this-repo-url> /mnt/home/callum/.config/nixos
-# (or copy it across on a USB stick)
+# The whole dotfiles repo becomes ~/.config
+git clone https://github.com/stuartcallum/.config /mnt/home/callum/.config
 
 cp /mnt/etc/nixos/hardware-configuration.nix \
    /mnt/home/callum/.config/nixos/hosts/desktop/
+
+# Copy the VPN profile across from a USB stick (it's gitignored, so the
+# clone doesn't include it)
+cp /path/to/usb/house.ovpn /mnt/home/callum/.config/nixos/secrets/house.ovpn
 ```
 
 Check the generated file lists the three btrfs subvolumes and the `/boot`
@@ -87,7 +101,7 @@ If the machine has an NVIDIA GPU, uncomment the nvidia import in
 Flakes only see **git-tracked** files, so commit the hardware config:
 
 ```sh
-cd /mnt/home/callum/.config/nixos
+cd /mnt/home/callum/.config
 git add -A && git commit -m "Add desktop hardware configuration"
 ```
 
@@ -104,8 +118,7 @@ You'll be logged straight into GNOME (autologin). Then:
 
 ```sh
 passwd                      # replace the placeholder password 'changeme'
-sudo chown -R callum:users ~/.config/nixos
-cp <your-vpn-profile> ~/.config/nixos/secrets/house.ovpn
+sudo chown -R callum:users ~/.config
 ```
 
 Windows should appear as an entry in the systemd-boot menu automatically. If
@@ -136,8 +149,11 @@ machine themselves.
   (for sudo, ssh, and the lock screen) — set it on first boot.
 - **Sudo**: `nixos-rebuild` is passwordless for callum; everything else
   prompts normally.
-- **Hyprland** is configured system-side only; put your window manager
-  config in `~/.config/hypr/hyprland.conf` (Hyprland generates a default on
-  first launch).
+- **Hyprland**'s window manager config comes from the repo's own `hypr/`
+  directory, which lands at `~/.config/hypr/` with the clone — nothing extra
+  to set up.
+- **VPN**: `sudo systemctl start openvpn-house`. If OpenVPN 2.6 rejects the
+  router's legacy cipher, append `data-ciphers-fallback AES-128-CBC` to
+  `secrets/house.ovpn`.
 - **Proton-GE** appears in Steam under Settings → Compatibility once you
   enable "Steam Play for all other titles".

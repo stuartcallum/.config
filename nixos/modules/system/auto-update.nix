@@ -10,6 +10,10 @@
 {
   system.autoUpgrade = {
     enable = true;
+    # ~/.config is a clone of github.com/stuartcallum/.config; the flake lives
+    # in its nixos/ subdirectory. To have the machine track GitHub directly
+    # instead of the local checkout, use:
+    #   flake = "github:stuartcallum/.config?dir=nixos#desktop";
     flake = "/home/callum/.config/nixos#desktop";
     flags = [
       "--update-input" "nixpkgs"

@@ -1,9 +1,13 @@
-# OpenVPN tunnel to the other house.
+# OpenVPN tunnel to the other house (TP-Link router at calstu.tplinkdns.com).
 #
-# Drop your client profile at /home/callum/.config/nixos/secrets/house.ovpn
-# (the secrets/ directory is gitignored — never commit it). If the profile
-# references separate cert/key files, put them in secrets/ too and use
-# relative paths inside the .ovpn.
+# The client profile lives at /home/callum/.config/nixos/secrets/house.ovpn —
+# self-contained with inline ca/cert/key. secrets/ is gitignored and the
+# .config repo is PUBLIC, so the profile must be copied to the machine
+# out-of-band (USB stick), not via git clone.
+#
+# If OpenVPN 2.6 refuses the router's legacy cipher with a "cipher not
+# allowed" error, append this line to house.ovpn:
+#   data-ciphers-fallback AES-128-CBC
 { ... }:
 
 {
