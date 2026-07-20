@@ -1,28 +1,36 @@
 # Gaming — the whole section tracks unstable for the newest compatibility work
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [ ./retro.nix ];
 
-  # Swap the stable packages for unstable ones. Overlaying (rather than
-  # setting each module's package option) keeps the modules' FHS-env and
-  # compat-path wiring intact.
+  # Every package named here resolves to its unstable build, everywhere —
+  # including inside NixOS modules (programs.steam, programs.gamemode, ...).
+  # To put a gaming package on unstable, add its name to this list; the rest
+  # of the gaming modules just use plain `pkgs.<name>`.
   nixpkgs.overlays = [
-    (final: prev: {
-      steam = prev.unstable.steam;
-      steam-unwrapped = prev.unstable.steam-unwrapped;
-      gamemode = prev.unstable.gamemode;
-      gamescope = prev.unstable.gamescope;
-    })
+    (final: prev: lib.genAttrs [
+      "steam"
+      "steam-unwrapped"
+      "proton-ge-bin"
+      "gamemode"
+      "gamescope"
+      "mangohud"
+      "duckstation"
+      "pcsx2"
+      "xemu"
+      "rpcs3"
+      "dolphin-emu"
+    ] (name: prev.unstable.${name}))
   ];
 
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
-    # GloriousEggroll's Proton build (unstable) — shows up in Steam under
+    # GloriousEggroll's Proton build — shows up in Steam under
     # Settings > Compatibility as "Proton-GE"
-    extraCompatPackages = [ pkgs.unstable.proton-ge-bin ];
+    extraCompatPackages = [ pkgs.proton-ge-bin ];
   };
 
   # `gamemoderun %command%` in a game's launch options gets CPU governor
@@ -39,6 +47,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    unstable.mangohud # FPS/frametime overlay: `mangohud %command%`
+    mangohud # FPS/frametime overlay: `mangohud %command%`
   ];
 }

@@ -15,7 +15,8 @@
     lib.mkEnableOption "retro console emulators (PS1/PS2/PS3, Xbox, GameCube, Wii)";
 
   config = lib.mkIf config.my.gaming.retro.enable {
-    environment.systemPackages = with pkgs.unstable; [
+    # (these resolve to unstable via the overlay in ./default.nix)
+    environment.systemPackages = with pkgs; [
       duckstation  # PS1
       pcsx2        # PS2
       xemu         # original Xbox
