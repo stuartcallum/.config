@@ -80,17 +80,21 @@ have <16 GB RAM.
 ```sh
 nixos-generate-config --root /mnt
 
-# The whole dotfiles repo becomes ~/.config
-git clone https://github.com/stuartcallum/.config /mnt/home/callum/.config
+# The NIXDATA USB stick carries the whole repo — git history, dotfiles, and
+# the (gitignored) VPN profile. Plug it in and copy it as ~/.config:
+mkdir -p /usb
+mount /dev/disk/by-label/NIXDATA /usb
+cp -r /usb/config /mnt/home/callum/.config
+umount /usb
+
+# FAT32 doesn't store file modes, so tell git to ignore them
+git -C /mnt/home/callum/.config config core.filemode false
 
 cp /mnt/etc/nixos/hardware-configuration.nix \
    /mnt/home/callum/.config/nixos/hosts/desktop/
 
-# The VPN profile is gitignored, so the clone doesn't include it. Copy it
-# over the network from the Mac (enable System Settings > General > Sharing >
-# Remote Login on the Mac first):
-scp callum@<mac-ip>:git/nixos/nixos/secrets/house.ovpn \
-    /mnt/home/callum/.config/nixos/secrets/house.ovpn
+# (No USB handy? `git clone https://github.com/stuartcallum/.config` works
+# too — but then copy secrets/house.ovpn across separately; it's not in git.)
 ```
 
 Check the generated file lists the three btrfs subvolumes and the `/boot`
