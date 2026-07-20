@@ -34,6 +34,10 @@
     # Terminal (unstable)
     unstable.ghostty
 
+    # Editors / AI tooling (unstable)
+    unstable.claude-code # installs the `claude` CLI
+    unstable.zed-editor
+
     # Browsers
     firefox
     chromium

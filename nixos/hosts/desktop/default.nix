@@ -17,7 +17,8 @@
   networking.hostName = "desktop";
 
   # Which session to boot into: "gnome" or "hyprland".
-  # Both are always installed — change this and rebuild to switch.
+  # (Hyprland is currently commented out in modules/desktop/default.nix —
+  # re-enable it there before switching this to "hyprland".)
   my.desktop.session = "gnome";
 
   system.stateVersion = "25.05"; # never change this after install

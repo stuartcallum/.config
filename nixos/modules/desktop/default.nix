@@ -5,7 +5,8 @@
 {
   imports = [
     ./gnome.nix
-    ./hyprland.nix
+    # ./hyprland.nix  # disabled for now — uncomment (and set
+    #                 # my.desktop.session = "hyprland" if desired) to re-enable
     ./audio.nix
   ];
 
