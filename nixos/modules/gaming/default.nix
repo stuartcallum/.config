@@ -1,16 +1,18 @@
-# Gaming — Steam and Proton track unstable for the newest compatibility work
+# Gaming — the whole section tracks unstable for the newest compatibility work
 { pkgs, ... }:
 
 {
   imports = [ ./retro.nix ];
 
-  # Swap the stable steam packages for unstable ones. Overlaying (rather than
-  # setting programs.steam.package directly) keeps the module's FHS-env and
+  # Swap the stable packages for unstable ones. Overlaying (rather than
+  # setting each module's package option) keeps the modules' FHS-env and
   # compat-path wiring intact.
   nixpkgs.overlays = [
     (final: prev: {
       steam = prev.unstable.steam;
       steam-unwrapped = prev.unstable.steam-unwrapped;
+      gamemode = prev.unstable.gamemode;
+      gamescope = prev.unstable.gamescope;
     })
   ];
 
@@ -37,6 +39,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    mangohud # FPS/frametime overlay: `mangohud %command%`
+    unstable.mangohud # FPS/frametime overlay: `mangohud %command%`
   ];
 }
