@@ -12,6 +12,7 @@
     ../../modules/system/auto-update.nix
     ../../modules/system/config-repo.nix
     ../../modules/system/snapshots.nix
+    ../../modules/system/secure-boot.nix
     # Uncomment if this machine has an NVIDIA GPU:
     # ../../modules/hardware/nvidia.nix
   ];
