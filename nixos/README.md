@@ -86,9 +86,11 @@ git clone https://github.com/stuartcallum/.config /mnt/home/callum/.config
 cp /mnt/etc/nixos/hardware-configuration.nix \
    /mnt/home/callum/.config/nixos/hosts/desktop/
 
-# Copy the VPN profile across from a USB stick (it's gitignored, so the
-# clone doesn't include it)
-cp /path/to/usb/house.ovpn /mnt/home/callum/.config/nixos/secrets/house.ovpn
+# The VPN profile is gitignored, so the clone doesn't include it. Copy it
+# over the network from the Mac (enable System Settings > General > Sharing >
+# Remote Login on the Mac first):
+scp callum@<mac-ip>:git/nixos/nixos/secrets/house.ovpn \
+    /mnt/home/callum/.config/nixos/secrets/house.ovpn
 ```
 
 Check the generated file lists the three btrfs subvolumes and the `/boot`
