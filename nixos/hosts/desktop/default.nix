@@ -23,5 +23,5 @@
   # re-enable it there before switching this to "hyprland".)
   my.desktop.session = "gnome";
 
-  system.stateVersion = "25.05"; # never change this after install
+  system.stateVersion = "26.05"; # never change this after install
 }

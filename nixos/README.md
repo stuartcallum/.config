@@ -12,7 +12,7 @@ with it.
 ## Layout (of this subdirectory)
 
 ```
-flake.nix                    # inputs: nixos-25.05 (stable) + unstable overlay
+flake.nix                    # inputs: nixos-26.05 (stable) + unstable overlay
 hosts/desktop/               # host entry point + hardware-configuration.nix
 modules/
   core/                      # boot loader, nix settings, users/sudo, locale
@@ -29,7 +29,7 @@ secrets/                     # gitignored — OpenVPN profile lives here
 > private key) is gitignored and must be moved between machines by hand —
 > a fresh clone will NOT contain it.
 
-Most packages come from **nixos-25.05**. Neovim, Steam, Proton-GE, and
+Most packages come from **nixos-26.05**. Neovim, Steam, Proton-GE, and
 Ghostty come from **nixos-unstable** via the `pkgs.unstable` overlay.
 
 ## Installing (dual boot with Windows)

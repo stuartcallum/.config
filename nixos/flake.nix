@@ -3,7 +3,7 @@
 
   inputs = {
     # Stable channel — most packages come from here
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     # Unstable channel — used selectively (neovim, steam, proton, ghostty)
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
