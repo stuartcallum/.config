@@ -1,0 +1,10 @@
+# VPN profiles, keys, and any other credentials — never commit
+secrets/*
+!secrets/README.md
+
+# Build output
+result
+result-*
+
+# macOS noise
+.DS_Store
