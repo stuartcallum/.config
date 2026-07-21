@@ -38,9 +38,10 @@
     unstable.claude-code # installs the `claude` CLI
     unstable.zed-editor
 
-    # Browsers
+    # Browsers / mail
     firefox
     chromium
+    thunderbird
 
     # iCloud Mail as a standalone app window (Chromium's --app mode) rather
     # than a browser tab — shows up in the app grid as "iCloud Mail".

@@ -21,5 +21,12 @@
     configurationLimit = 15;
   };
 
-  environment.systemPackages = [ pkgs.sbctl ];
+  environment.systemPackages = [
+    pkgs.sbctl
+    # Inspect the TPM directly from Linux — useful since this same chip is
+    # what Windows/BitLocker binds to on the other side of this dual boot.
+    # e.g. `sudo tpm2_pcrread` (compare PCR 7 before/after a Secure Boot
+    # change), `tpm2_getcap properties-fixed` (manufacturer/version/state).
+    pkgs.tpm2-tools
+  ];
 }
