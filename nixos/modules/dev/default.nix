@@ -54,6 +54,9 @@
       categories = [ "Network" "Email" ];
     })
 
+    # Language servers
+    nixd # Nix LSP, used by Zed's "Nix" extension
+
     # VCS
     git
     gh

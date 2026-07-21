@@ -17,12 +17,8 @@
       "proton-ge-bin"
       "gamemode"
       "gamescope"
-      "mangohud"
-      "duckstation"
-      "pcsx2"
       "xemu"
       "rpcs3"
-      "dolphin-emu"
     ] (name: final.unstable.${name}))
   ];
 

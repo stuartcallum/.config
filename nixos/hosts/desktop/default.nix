@@ -24,9 +24,10 @@
   # re-enable it there before switching this to "hyprland".)
   my.desktop.session = "gnome";
 
-  # Console emulators (PS1/PS2/PS3, Xbox, GameCube, Wii) — off for now;
-  # flip to true and rebuild to install them (see modules/gaming/retro.nix)
-  my.gaming.retro.enable = false;
+  # Console emulators (PS1/PS2/PS3, Xbox, GameCube, Wii). PS1/PS2/GameCube/Wii
+  # run as RetroArch cores (see modules/gaming/retro.nix); PS3 and Xbox are
+  # standalone since no libretro core exists for them.
+  my.gaming.retro.enable = true;
 
   system.stateVersion = "26.05"; # never change this after install
 }
