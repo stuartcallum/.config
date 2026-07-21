@@ -48,13 +48,27 @@
   # Valve's micro-compositor: resolution scaling / frame limiting per game
   programs.gamescope.enable = true;
 
-  # 32-bit graphics libraries — required by Steam and many Proton games
+  # 32-bit graphics libraries — required by Steam and many Proton games.
+  #
+  # Mesa itself is pinned to unstable here (not via the name-list overlay
+  # above, since this is a system-wide driver package, not an app) to get
+  # RDNA3/GFX11 FSR 4 support as it lands in RADV — see FSR_4.md.
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+    package = pkgs.unstable.mesa;
+    package32 = pkgs.unstable.pkgsi686Linux.mesa;
   };
 
   environment.systemPackages = with pkgs; [
     mangohud # FPS/frametime overlay: `mangohud %command%`
+
+    # Opt-in experimental native-Wayland Steam client, kept separate from
+    # the normal `steam` launcher — Valve's own issue tracker has open
+    # reports of games failing to launch in this mode as of March 2026.
+    # If a game won't start, quit this and use the regular Steam icon.
+    (pkgs.writeShellScriptBin "steam-wayland" ''
+      exec ${pkgs.steam}/bin/steam --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
+    '')
   ];
 }

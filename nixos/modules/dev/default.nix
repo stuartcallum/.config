@@ -42,6 +42,17 @@
     firefox
     chromium
 
+    # iCloud Mail as a standalone app window (Chromium's --app mode) rather
+    # than a browser tab — shows up in the app grid as "iCloud Mail".
+    (pkgs.makeDesktopItem {
+      name = "icloud-mail";
+      desktopName = "iCloud Mail";
+      genericName = "Webmail";
+      icon = "mail-client";
+      exec = "${pkgs.chromium}/bin/chromium --app=https://www.icloud.com/mail";
+      categories = [ "Network" "Email" ];
+    })
+
     # VCS
     git
     gh
