@@ -35,6 +35,12 @@
     extraCompatPackages = [ pkgs.proton-ge-bin ];
   };
 
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    # Add any missing dynamic libraries your binary needs here
+    stdenv.cc.cc.lib 
+  ];
+
   # `gamemoderun %command%` in a game's launch options gets CPU governor
   # boosts and priority tweaks while the game runs
   programs.gamemode.enable = true;
