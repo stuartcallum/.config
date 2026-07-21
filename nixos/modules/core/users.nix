@@ -29,6 +29,33 @@
     nrb = "sudo nixos-rebuild boot --flake /home/callum/.config/nixos#desktop";
   };
 
+  # `nru` — push the config, snapshot, pull the latest flake inputs, rebuild.
+  # git push runs as callum (needs your SSH key); the snapshot and rebuild
+  # need root, which passwordless wheel sudo above already covers.
+  environment.systemPackages = [
+    (pkgs.writeShellScriptBin "nru" ''
+      set -e
+      cd /home/callum/.config
+
+      echo "==> Pushing config to git..."
+      git push
+
+      echo "==> Taking a btrfs snapshot..."
+      sudo nix-snapshot
+
+      echo "==> Updating flake inputs..."
+      cd nixos
+      nix flake update
+
+      echo "==> Rebuilding..."
+      sudo nixos-rebuild switch --flake .#desktop
+
+      if ! git diff --quiet -- flake.lock; then
+        echo "Note: flake.lock changed — commit and push it when convenient."
+      fi
+    '')
+  ];
+
   # Keep /etc/nixos pointing at the real config in callum's home directory,
   # so standard tooling finds it and callum can edit/commit without sudo.
   systemd.tmpfiles.rules = [

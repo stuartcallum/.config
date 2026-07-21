@@ -137,6 +137,7 @@ the clocks disagree between OSes, that's already handled
 |------|---------|
 | Rebuild after editing config | `nrs` (alias, no sudo password needed) |
 | Rebuild for next boot only | `nrb` |
+| Push, snapshot, update inputs, rebuild | `nru` |
 | Switch GNOME ↔ Hyprland | edit `my.desktop.session` in `hosts/desktop/default.nix`, then `nrs` |
 | Update pinned inputs | `nix flake update && nrs`, commit `flake.lock` |
 | Start/stop the VPN | `sudo systemctl start openvpn-house` / `stop` |
