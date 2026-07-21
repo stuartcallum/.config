@@ -23,13 +23,11 @@
   config = lib.mkIf config.my.gaming.retro.enable {
     # (these resolve to unstable via the overlay in ./default.nix)
     environment.systemPackages = with pkgs; [
-      (retroarch.override {
-        cores = with libretro; [
-          swanstation # PS1
-          pcsx2       # PS2
-          dolphin     # GameCube + Wii
-        ];
-      })
+      (retroarch.withCores (cores: with cores; [
+        swanstation # PS1
+        pcsx2       # PS2
+        dolphin     # GameCube + Wii
+      ]))
       xemu  # original Xbox — no libretro core, launched standalone
       rpcs3 # PS3 — no libretro core, launched standalone
     ];
