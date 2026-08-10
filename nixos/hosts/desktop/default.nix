@@ -13,16 +13,18 @@
     ../../modules/system/config-repo.nix
     ../../modules/system/snapshots.nix
     ../../modules/system/secure-boot.nix
+    ../../modules/system/fwupd.nix
     # Uncomment if this machine has an NVIDIA GPU:
     # ../../modules/hardware/nvidia.nix
   ];
 
   networking.hostName = "desktop";
 
-  # Which session to boot into: "gnome" or "hyprland".
-  # (Hyprland is currently commented out in modules/desktop/default.nix —
-  # re-enable it there before switching this to "hyprland".)
-  my.desktop.session = "gnome";
+  # Which session to boot into: "plasma", "gnome" or "hyprland".
+  # (GNOME and Hyprland are both currently commented out in
+  # modules/desktop/default.nix — re-enable the import there before
+  # switching this to either of them.)
+  my.desktop.session = "plasma";
 
   # Console emulators (PS1/PS2/PS3, Xbox, GameCube, Wii). PS1/PS2/GameCube/Wii
   # run as RetroArch cores (see modules/gaming/retro.nix); PS3 and Xbox are

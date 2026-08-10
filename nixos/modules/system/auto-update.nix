@@ -8,6 +8,16 @@
 { ... }:
 
 {
+  # nixos-upgrade.service runs as root, but ~/.config is a git checkout owned
+  # by callum. Git (and the libgit2 flake fetcher Nix uses for git+file
+  # inputs) refuses to touch a repo owned by another user unless it's marked
+  # safe, so without this the nightly build fails with:
+  #   "repository path '/home/callum/.config' is not owned by current user"
+  environment.etc."gitconfig".text = ''
+    [safe]
+      directory = /home/callum/.config
+  '';
+
   system.autoUpgrade = {
     enable = true;
     # ~/.config is a clone of github.com/stuartcallum/.config; the flake lives

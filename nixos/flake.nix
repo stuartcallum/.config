@@ -35,5 +35,11 @@
           ./hosts/desktop
         ];
       };
+
+      # Dev shell for editing this config: Nix LSP for editors (e.g. Zed).
+      # Loaded automatically in this directory via direnv (see .envrc).
+      devShells.${system}.default = nixpkgs.legacyPackages.${system}.mkShell {
+        packages = [ nixpkgs.legacyPackages.${system}.nixd ];
+      };
     };
 }

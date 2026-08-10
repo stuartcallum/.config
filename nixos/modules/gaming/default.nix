@@ -2,7 +2,10 @@
 { lib, pkgs, ... }:
 
 {
-  imports = [ ./retro.nix ];
+  imports = [
+    ./retro.nix
+    ./optimizations.nix
+  ];
 
   # Every package named here resolves to its unstable build, everywhere —
   # including inside NixOS modules (programs.steam, programs.gamemode, ...).
@@ -19,6 +22,7 @@
       "gamescope"
       "xemu"
       "rpcs3"
+      "pactl"
     ] (name: final.unstable.${name}))
   ];
 
@@ -40,9 +44,24 @@
   # `gamemoderun %command%` in a game's launch options gets CPU governor
   # boosts and priority tweaks while the game runs
   programs.gamemode.enable = true;
+  programs.gamemode.settings = {
+    # GameMode's GPU tuning is opt-in — without this it only touches CPU
+    # governor/nice/ioprio and leaves the GPU clocked as normal.
+    gpu = {
+      apply_gpu_optimisations = "accept-responsibility";
+      gpu_device = 0;
+      amd_performance_level = "high";
+    };
+  };
 
   # Valve's micro-compositor: resolution scaling / frame limiting per game
   programs.gamescope.enable = true;
+
+  # No swap was configured at all (hardware-configuration.nix has
+  # swapDevices = [ ];) — zram gives cheap compressed RAM-backed swap so
+  # shader-compilation spikes and texture streaming don't risk an OOM kill
+  # mid-game.
+  zramSwap.enable = true;
 
   # 32-bit graphics libraries — required by Steam and many Proton games.
   #
@@ -63,8 +82,32 @@
     # the normal `steam` launcher — Valve's own issue tracker has open
     # reports of games failing to launch in this mode as of March 2026.
     # If a game won't start, quit this and use the regular Steam icon.
+    #
+    # Also exports Wayland hints for anything launched *from* this Steam
+    # instance: SDL_VIDEODRIVER=wayland picks up native-Wayland SDL2 games
+    # (other engines need their own per-game flag — there's no universal
+    # switch), and PROTON_ENABLE_WAYLAND=1 makes Proton/Proton-GE use Wine's
+    # Wayland driver instead of XWayland. Both are inherited by child
+    # processes, so games still choose whether to honour them — same
+    # fall-back-to-the-regular-icon caveat as above if one breaks.
     (pkgs.writeShellScriptBin "steam-wayland" ''
+      export SDL_VIDEODRIVER=wayland
+      export PROTON_ENABLE_WAYLAND=1
       exec ${pkgs.steam}/bin/steam --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
     '')
+
+    # .desktop entry so steam-wayland shows up in the desktop's app launcher
+    # (a writeShellScriptBin alone only adds a $PATH binary, no launcher
+    # icon). Reuses Steam's own icon and MIME handlers so it's a drop-in
+    # replacement for the regular Steam tile.
+    (pkgs.makeDesktopItem {
+      name = "steam-wayland";
+      desktopName = "Steam (Wayland)";
+      comment = "Play games on Steam, using the native Wayland client";
+      exec = "steam-wayland %U";
+      icon = "steam";
+      categories = [ "Network" "FileTransfer" "Game" ];
+      mimeTypes = [ "x-scheme-handler/steam" "x-scheme-handler/steamlink" ];
+    })
   ];
 }

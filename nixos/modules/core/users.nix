@@ -18,8 +18,6 @@
     initialPassword = "changeme";
   };
 
-  programs.zsh.enable = true;
-
   # Passwordless sudo for the wheel group (single-user desktop)
   security.sudo.wheelNeedsPassword = false;
 

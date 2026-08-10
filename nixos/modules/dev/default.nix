@@ -43,20 +43,6 @@
     chromium
     thunderbird
 
-    # iCloud Mail as a standalone app window (Chromium's --app mode) rather
-    # than a browser tab — shows up in the app grid as "iCloud Mail".
-    (pkgs.makeDesktopItem {
-      name = "icloud-mail";
-      desktopName = "iCloud Mail";
-      genericName = "Webmail";
-      icon = "mail-client";
-      exec = "${pkgs.chromium}/bin/chromium --app=https://www.icloud.com/mail";
-      categories = [ "Network" "Email" ];
-    })
-
-    # Language servers
-    nixd # Nix LSP, used by Zed's "Nix" extension
-
     # VCS
     git
     gh
@@ -70,6 +56,8 @@
     curl
     htop
     unzip
+    tmux
+    btop
 
     # Build basics for the odd native dependency
     gcc

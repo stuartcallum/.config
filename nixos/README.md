@@ -1,7 +1,7 @@
 # NixOS config — desktop
 
 Flake-based NixOS configuration for the desktop PC. Gaming + dev work,
-GNOME/Hyprland, dual boot with Windows.
+KDE Plasma 6, dual boot with Windows.
 
 Lives in the `nixos/` subdirectory of
 [stuartcallum/.config](https://github.com/stuartcallum/.config), which is
@@ -16,9 +16,11 @@ flake.nix                    # inputs: nixos-26.05 (stable) + unstable overlay
 hosts/desktop/               # host entry point + hardware-configuration.nix
 modules/
   core/                      # boot loader, nix settings, users/sudo, locale
-  desktop/                   # GNOME, Hyprland, autologin toggle, pipewire
+  desktop/                   # KDE Plasma (GNOME/Hyprland kept but commented
+                             #   out), autologin toggle, pipewire, fonts
   networking/                # wifi (NetworkManager + firmware), OpenVPN
-  gaming/                    # steam/proton-GE (unstable), gamemode, gamescope
+  gaming/                    # steam/proton-GE (unstable), gamemode, gamescope,
+                             #   sysctl/scheduler tuning (optimizations.nix)
   dev/                       # neovim/ghostty (unstable), browsers, ssh, docker
   system/auto-update.nix     # nightly upgrades
   hardware/nvidia.nix        # opt-in, import from the host if needed
@@ -120,7 +122,7 @@ reboot
 
 ### 4. First boot
 
-You'll be logged straight into GNOME (autologin). Then:
+You'll be logged straight into KDE Plasma (autologin). Then:
 
 ```sh
 passwd                      # replace the placeholder password 'changeme'
@@ -138,7 +140,7 @@ the clocks disagree between OSes, that's already handled
 | Rebuild after editing config | `nrs` (alias, no sudo password needed) |
 | Rebuild for next boot only | `nrb` |
 | Push, snapshot, update inputs, rebuild | `nru` |
-| Switch GNOME ↔ Hyprland | edit `my.desktop.session` in `hosts/desktop/default.nix`, then `nrs` |
+| Switch session (plasma/gnome/hyprland) | uncomment the import in `modules/desktop/default.nix`, set `my.desktop.session` in `hosts/desktop/default.nix`, then `nrs` |
 | Update pinned inputs | `nix flake update && nrs`, commit `flake.lock` |
 | Start/stop the VPN | `sudo systemctl start openvpn-house` / `stop` |
 | Roll back the system | pick an older generation in the boot menu |
@@ -154,9 +156,21 @@ machine themselves.
 
 ## Notes
 
-- **Passwordless login** = GDM autologin. Your account still has a password
-  (for sudo, ssh, and the lock screen) — set it on first boot.
+- **Passwordless login** = SDDM autologin into the Plasma Wayland session.
+  Your account still has a password (for sudo, ssh, and the lock screen) —
+  set it on first boot.
+  - Because nothing types that password at login, **KWallet can't be unlocked
+    by PAM** — Plasma asks for it the first time something wants the wallet
+    (Chromium saving a password, a wifi secret). Give the wallet an empty
+    password when it offers to create one if you'd rather never see it.
 - **Sudo**: passwordless for the wheel group.
+- **KDE defaults**: terminal is Ghostty and browser is Chromium, set as
+  system-wide defaults in `/etc/xdg/{kdeglobals,mimeapps.list}` from
+  `modules/desktop/kde.nix`. Changing them in System Settings writes to
+  `~/.config` and wins over those — the module isn't fighting you.
+- **Baloo** (KDE's file indexer) is disabled by default in the same module;
+  it's the usual cause of background disk I/O while gaming. Re-enable it in
+  System Settings → Search if you want Dolphin content search.
 - **Hyprland**'s window manager config comes from the repo's own `hypr/`
   directory, which lands at `~/.config/hypr/` with the clone — nothing extra
   to set up.
