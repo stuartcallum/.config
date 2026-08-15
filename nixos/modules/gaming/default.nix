@@ -24,6 +24,19 @@
       "rpcs3"
       "pactl"
     ] (name: final.unstable.${name}))
+
+    # rpcs3's pinned snapshot (2026-04-25) still reads AVCodec::pix_fmts in
+    # recording_settings_dialog.cpp, which FFmpeg 8 removed — and every
+    # channel now ships 8 or newer (26.05 has 8.1.2, unstable 9.0), so this
+    # fails to compile on stable too, not just here. Upstream dropped the
+    # check in July 2026; until nixpkgs bumps past its snapshot, build
+    # against the last FFmpeg that still has the field. Drop this overlay
+    # once rpcs3 in nixpkgs is newer than 2026-07-20.
+    # (`unstable.ffmpeg_7`, not the stable one — rpcs3 itself comes from
+    # unstable, and keeping both in one nixpkgs avoids ABI skew.)
+    (final: prev: {
+      rpcs3 = prev.rpcs3.override { ffmpeg = final.unstable.ffmpeg_7; };
+    })
   ];
 
   programs.steam = {
