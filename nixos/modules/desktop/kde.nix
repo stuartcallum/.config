@@ -23,7 +23,7 @@
   services.orca.enable = false;
 
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    konsole # ghostty is the terminal — see TerminalApplication below
+    # konsole # ghostty is the terminal — see TerminalApplication below
     kate # neovim + zed cover editing
     ktexteditor # only there to give kate elevated-save actions
     elisa # music player

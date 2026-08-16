@@ -46,6 +46,23 @@
       item = "nofile";
       value = "1048576";
     }
+
+    # RPCS3 mlocks its 2 GiB guest memory region so the PS3 address space is
+    # never paged out mid-frame; the stock 8 MiB cap makes every lock fail and
+    # it falls back to a slower path. It raises its own soft limit on startup,
+    # so the hard value is the one that actually has to clear 2 GiB.
+    {
+      domain = "*";
+      type = "soft";
+      item = "memlock";
+      value = "2097152";
+    }
+    {
+      domain = "*";
+      type = "hard";
+      item = "memlock";
+      value = "4194304";
+    }
   ];
 
   # Both need CAP_SYS_NICE to raise priority for the game's threads —
