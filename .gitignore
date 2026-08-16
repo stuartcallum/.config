@@ -1,2 +1,71 @@
 nvim/lazy-lock.json
 icedtea-web/
+
+# ---------------------------------------------------------------------------
+# Live application state — written by running apps, not configuration worth
+# versioning. This repo is PUBLIC, so anything matched here also stays off
+# GitHub. Adding a pattern does not untrack a file that is already committed;
+# use `git rm --cached <path>` for that.
+# ---------------------------------------------------------------------------
+
+# Firefox — session, telemetry and credential state
+mozilla/firefox/*/lock
+mozilla/firefox/*/logins.json
+mozilla/firefox/*/sessionstore.jsonlz4
+mozilla/firefox/*/sessionstore-backups/
+mozilla/firefox/*/datareporting/
+mozilla/firefox/*/saved-telemetry-pings/
+mozilla/firefox/*/security_state/
+mozilla/firefox/*/serviceworker.txt
+mozilla/firefox/*/storage/
+
+# KDE Plasma — per-machine desktop layout and session state
+KDE/
+kdedefaults/
+session/
+arkrc
+bluedevilglobalrc
+dolphinrc
+kactivitymanagerdrc
+kactivitymanagerd-statsrc
+kconf_updaterc
+kded5rc
+kdeglobals
+kglobalshortcutsrc
+kiorc
+konsolerc
+ksmserverrc
+ktimezonedrc
+kwalletrc
+kwinrc
+kwinoutputconfig.json
+plasma-localerc
+plasmanotifyrc
+plasma-org.kde.plasma.desktop-appletsrc
+plasmashellrc
+powerdevilrc
+powermanagementprofilesrc
+spectaclerc
+trashrc
+
+# Qt/GTK theming and display state written by the desktop itself
+QtProject.conf
+Trolltech.conf
+gtkrc
+gtkrc-2.0
+gtk-3.0/colors.css
+gtk-3.0/gtk.css
+gtk-3.0/settings.ini
+gtk-4.0/
+xsettingsd/
+background
+monitors.xml
+mimeapps.list
+
+# Application state — caches, save data and per-machine settings
+PCSX2/
+retroarch/
+rpcs3/
+chromium/
+btop/
+zed/

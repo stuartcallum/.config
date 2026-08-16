@@ -5,6 +5,7 @@
   imports = [
     ./retro.nix
     ./optimizations.nix
+    ./nzbget.nix
   ];
 
   # Every package named here resolves to its unstable build, everywhere —
@@ -23,6 +24,11 @@
       "xemu"
       "rpcs3"
       "pactl"
+      # Discord hard-blocks clients it decides are too old ("Update Required",
+      # won't launch), and stable lags its release pace — so it tracks
+      # unstable. Listing it here only picks the channel; it still has to be
+      # installed below.
+      "discord"
     ] (name: final.unstable.${name}))
 
     # rpcs3's pinned snapshot (2026-04-25) still reads AVCodec::pix_fmts in
@@ -51,7 +57,7 @@
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     # Add any missing dynamic libraries your binary needs here
-    stdenv.cc.cc.lib 
+    stdenv.cc.cc.lib
   ];
 
   # `gamemoderun %command%` in a game's launch options gets CPU governor
@@ -90,6 +96,7 @@
 
   environment.systemPackages = with pkgs; [
     mangohud # FPS/frametime overlay: `mangohud %command%`
+    discord # voice chat (unstable, see the overlay list above)
 
     # Opt-in experimental native-Wayland Steam client, kept separate from
     # the normal `steam` launcher — Valve's own issue tracker has open

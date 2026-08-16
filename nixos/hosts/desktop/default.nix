@@ -31,5 +31,9 @@
   # standalone since no libretro core exists for them.
   my.gaming.retro.enable = true;
 
+  # Usenet downloader feeding ~/Games/roms/downloads (modules/gaming/nzbget.nix).
+  # Web UI on 127.0.0.1:6789; credentials in secrets/nzbget-credentials.conf.
+  my.gaming.nzbget.enable = true;
+
   system.stateVersion = "26.05"; # never change this after install
 }

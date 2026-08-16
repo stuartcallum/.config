@@ -21,7 +21,11 @@
       # Exposes the unstable channel as `pkgs.unstable.<package>`
       unstableOverlay = final: prev: {
         unstable = import nixpkgs-unstable {
-          inherit (final) system;
+          # The let-bound `system` above, not `final.system` — that attribute
+          # is deprecated in favour of `stdenv.hostPlatform.system` and warns
+          # on every evaluation. Same value either way, since this flake
+          # builds for one system.
+          inherit system;
           config.allowUnfree = true;
         };
       };
