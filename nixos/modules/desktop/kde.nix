@@ -22,6 +22,12 @@
   programs.kde-pim.enable = false;
   services.orca.enable = false;
 
+  environment.systemPackages = with pkgs; [
+    kdePackages.plasma-vault
+    kdePackages.dragon
+    gocryptfs
+  ];
+
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     # konsole # ghostty is the terminal — see TerminalApplication below
     kate # neovim + zed cover editing

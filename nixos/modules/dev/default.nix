@@ -37,6 +37,7 @@
     # Editors / AI tooling (unstable)
     unstable.claude-code # installs the `claude` CLI
     unstable.zed-editor
+    nil # Nix language-server
 
     # Browsers / mail
     firefox

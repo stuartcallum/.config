@@ -109,8 +109,15 @@ in
         # Loopback only — reach the UI from this machine, or over SSH.
         ControlIP = "127.0.0.1";
         ControlPort = 6789;
-        ControlUsername = "nzbget";
-        FormAuth = true;
+
+        # No login at all: empty username and password disable authentication.
+        # Both must be set explicitly — left unset, nzbget falls back to its
+        # shipped default password rather than to no password. Safe only
+        # because ControlIP is loopback; anything that widens that binding
+        # needs a password put back first.
+        ControlUsername = "";
+        ControlPassword = "";
+        FormAuth = false;
         SecureControl = false;
         AuthorizedIP = "";
 
@@ -199,6 +206,19 @@ in
       ${pkgs.coreutils}/bin/cat ${credentialsFile} >> ${stateDir}/nzbget.conf
       ${pkgs.coreutils}/bin/chmod 0600 ${stateDir}/nzbget.conf
     '';
+
+    # Not started at boot. Upstream wires the unit into multi-user.target;
+    # this leaves it installed but idle, to be run on demand:
+    #   sudo systemctl start nzbget     (and `stop` when you're done)
+    systemd.services.nzbget.wantedBy = lib.mkForce [ ];
+
+    # Drop upstream's `nzbget --quit` stop command and let systemd SIGTERM the
+    # daemon, which it shuts down cleanly on. That client call cannot work
+    # here: it is passed no --configfile, and even given one it would read a
+    # file that carries no ControlIP/ControlPort, because those reach the
+    # daemon as -o flags. It therefore failed on every stop and left the unit
+    # in `failed` rather than stopping anything — visible on each manual stop.
+    systemd.services.nzbget.serviceConfig.ExecStop = lib.mkForce "";
 
     systemd.tmpfiles.rules = [
       "d ${destDir}             0755 callum users -"

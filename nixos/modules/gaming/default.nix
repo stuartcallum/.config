@@ -24,6 +24,8 @@
       "xemu"
       "rpcs3"
       "pactl"
+      "eden"
+      "ryubing"
       # Discord hard-blocks clients it decides are too old ("Update Required",
       # won't launch), and stable lags its release pace — so it tracks
       # unstable. Listing it here only picks the channel; it still has to be
