@@ -5,7 +5,6 @@
   imports = [
     ./retro.nix
     ./optimizations.nix
-    ./nzbget.nix
   ];
 
   # Every package named here resolves to its unstable build, everywhere —

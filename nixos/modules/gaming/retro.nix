@@ -28,7 +28,6 @@
       pcsx2 # PS2
       dolphin-emu # Gamecube, Wii
       eden # Switch
-      nzbget # Download games
     ];
 
     # ROM library skeleton, owned by callum
