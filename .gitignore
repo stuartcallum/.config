@@ -47,6 +47,13 @@ powerdevilrc
 powermanagementprofilesrc
 spectaclerc
 trashrc
+baloofileinformationrc
+gwenviewrc
+konsolesshconfig
+okularrc
+okularpartrc
+kde.org/
+libaccounts-glib/
 
 # Qt/GTK theming and display state written by the desktop itself
 QtProject.conf
@@ -70,3 +77,8 @@ chromium/
 btop/
 zed/
 discord/
+r2modman/
+r2modmanPlus-local/
+
+# GNOME settings database — binary, rewritten by the desktop on every change
+dconf/user
