@@ -24,7 +24,7 @@
   # (GNOME and Hyprland are both currently commented out in
   # modules/desktop/default.nix — re-enable the import there before
   # switching this to either of them.)
-  my.desktop.session = "plasma";
+  my.desktop.session = "gnome";
 
   # Console emulators (PS1/PS2/PS3, Xbox, GameCube, Wii). PS1/PS2/GameCube/Wii
   # run as RetroArch cores (see modules/gaming/retro.nix); PS3 and Xbox are

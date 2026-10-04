@@ -4,8 +4,8 @@
 
 {
   imports = [
-    ./kde.nix
-    # ./gnome.nix   # replaced by KDE Plasma — uncomment (and set
+    # ./kde.nix
+    ./gnome.nix   # replaced by KDE Plasma — uncomment (and set
     #               # my.desktop.session = "gnome") to go back to GNOME
     # ./hyprland.nix  # disabled for now — uncomment (and set
     #                 # my.desktop.session = "hyprland" if desired) to re-enable
@@ -16,7 +16,7 @@
 
   options.my.desktop.session = lib.mkOption {
     type = lib.types.enum [ "plasma" "gnome" "hyprland" ];
-    default = "plasma";
+    default = "gnome";
     description = "Session to log into automatically. Set per-host and rebuild to toggle.";
   };
 

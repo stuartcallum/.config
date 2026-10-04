@@ -30,6 +30,7 @@
       # unstable. Listing it here only picks the channel; it still has to be
       # installed below.
       "discord"
+      "r2modman"
     ] (name: final.unstable.${name}))
 
     # rpcs3's pinned snapshot (2026-04-25) still reads AVCodec::pix_fmts in
@@ -41,9 +42,9 @@
     # once rpcs3 in nixpkgs is newer than 2026-07-20.
     # (`unstable.ffmpeg_7`, not the stable one — rpcs3 itself comes from
     # unstable, and keeping both in one nixpkgs avoids ABI skew.)
-    (final: prev: {
-      rpcs3 = prev.rpcs3.override { ffmpeg = final.unstable.ffmpeg_7; };
-    })
+#    (final: prev: {
+#      rpcs3 = prev.rpcs3.override { ffmpeg = final.unstable.ffmpeg_7; };
+#    })
   ];
 
   programs.steam = {
@@ -85,19 +86,18 @@
 
   # 32-bit graphics libraries — required by Steam and many Proton games.
   #
-  # Mesa itself is pinned to unstable here (not via the name-list overlay
-  # above, since this is a system-wide driver package, not an app) to get
-  # RDNA3/GFX11 FSR 4 support as it lands in RADV — see FSR_4.md.
+  # Mesa stays on stable: unstable mesa links against unstable's glibc, and
+  # once that's newer than stable's every compositor fails to load the
+  # driver ("No GPUs found") — see FSR_4.md.
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    package = pkgs.unstable.mesa;
-    package32 = pkgs.unstable.pkgsi686Linux.mesa;
   };
 
   environment.systemPackages = with pkgs; [
     mangohud # FPS/frametime overlay: `mangohud %command%`
     discord # voice chat (unstable, see the overlay list above)
+    r2modman # mod manager for Risk of Rain 2, Lethal Company, etc. (unstable, see the overlay list above)
 
     # Opt-in experimental native-Wayland Steam client, kept separate from
     # the normal `steam` launcher — Valve's own issue tracker has open

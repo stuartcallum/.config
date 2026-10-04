@@ -21,16 +21,38 @@
   # Passwordless sudo for the wheel group (single-user desktop)
   security.sudo.wheelNeedsPassword = false;
 
-  # Convenience: `nrs` rebuilds from the config repo in ~/.config
-  environment.shellAliases = {
-    nrs = "sudo nixos-rebuild switch --flake /home/callum/.config/nixos#desktop";
-    nrb = "sudo nixos-rebuild boot --flake /home/callum/.config/nixos#desktop";
-  };
-
-  # `nru` — push the config, snapshot, pull the latest flake inputs, rebuild.
-  # git push runs as callum (needs your SSH key); the snapshot and rebuild
-  # need root, which passwordless wheel sudo above already covers.
+  # `nrs`/`nrb` — update flake inputs, then rebuild (switch/boot). `nix flake
+  # update` runs as callum (writes flake.lock in the repo); the rebuild needs
+  # root, which passwordless wheel sudo above already covers.
   environment.systemPackages = [
+    (pkgs.writeShellScriptBin "nrs" ''
+      set -e
+      cd /home/callum/.config/nixos
+
+      echo "==> Updating flake inputs..."
+      nix flake update
+
+      echo "==> Rebuilding (switch)..."
+      sudo nixos-rebuild switch --flake .#desktop
+
+      if ! git diff --quiet -- flake.lock; then
+        echo "Note: flake.lock changed — commit and push it when convenient."
+      fi
+    '')
+    (pkgs.writeShellScriptBin "nrb" ''
+      set -e
+      cd /home/callum/.config/nixos
+
+      echo "==> Updating flake inputs..."
+      nix flake update
+
+      echo "==> Rebuilding (boot)..."
+      sudo nixos-rebuild boot --flake .#desktop
+
+      if ! git diff --quiet -- flake.lock; then
+        echo "Note: flake.lock changed — commit and push it when convenient."
+      fi
+    '')
     (pkgs.writeShellScriptBin "nru" ''
       set -e
       cd /home/callum/.config
