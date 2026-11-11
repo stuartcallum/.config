@@ -15,3 +15,6 @@ zed/prompts/
 *.psk
 id_*
 !id_*.pub
+
+# gh CLI auth/host state
+gh/

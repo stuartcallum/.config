@@ -104,8 +104,8 @@
   "buffer_font_size": 15,
   "theme": {
     "mode": "system",
-    "light": "Min Light (Blurred)",
-    "dark": "Min Dark (Blurred)",
+    "light": "Ayu Light",
+    "dark": "Monokai Night Fix",
   },
   "lsp": {
     "ansible-language-server": {

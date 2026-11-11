@@ -1,4 +1,9 @@
-theme = dark:Apple System Colors,light:Apple System Colors Light
+# OLED: true-black background so pixels switch off
+theme = Catppuccin Mocha
+background = 000000
+background-opacity = 1
+window-colorspace = display-p3
+unfocused-split-opacity = 1
 macos-titlebar-style = "tabs"
 window-decoration = "true"
 cursor-style = "block"
