@@ -1,13 +1,13 @@
-theme = "Apple System Colors"
+theme = dark:Apple System Colors,light:Apple System Colors Light
 macos-titlebar-style = "tabs"
-# window-decoration = "false"
+window-decoration = "true"
 cursor-style = "block"
-cursor-style-blink = "false"
-font-size = "14"
+cursor-style-blink=false
+font-size = "18"
 
 macos-option-as-alt = true
 
 keybind = alt+left=unbind
 keybind = alt+right=unbind
 confirm-close-surface=false
-
+maximize = true

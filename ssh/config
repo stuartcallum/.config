@@ -1,0 +1,32 @@
+# Work hosts live in an untracked file (not in this public repo)
+Include ~/.config/ssh/work
+
+Host bazzite
+  IdentityFile ~/.ssh/gh
+  HostName 192.168.0.68
+  User callum
+  SetEnv TERM=xterm-256color
+  ServerAliveInterval 60
+  ServerAliveCountMax 10
+
+Host debian
+  IdentityFile ~/.ssh/claude
+  HostName 192.168.0.100
+  User callum
+  SetEnv TERM=xterm-256color
+  ServerAliveInterval 60
+  ServerAliveCountMax 10
+
+Host rocky-dev 0227 192.168.0.227
+  # Local dev server: Rocky 9.8 VM on debian
+  HostName 192.168.0.227
+  User callum
+  IdentityFile ~/.ssh/gh
+  IdentitiesOnly yes
+  SetEnv TERM=xterm-256color
+  ServerAliveInterval 60
+  ServerAliveCountMax 10
+
+Host *
+  SetEnv TERM=xterm-256color
+  IdentityFile ~/.ssh/gh
